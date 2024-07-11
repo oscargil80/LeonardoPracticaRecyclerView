@@ -7,6 +7,16 @@
     <fragment
         android:id="@+id/productListFragment"
         android:name="dev.leonardom.androidintroduccion.presentation.product_list.ProductListFragment"
-        android:label="ProductListFragment" />
+        android:label="Inicio" />
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="dev.leonardom.androidintroduccion.presentation.favorites.FavoritesFragment"
+        android:label="Favoritos" />
+
+    <fragment
+        android:id="@+id/shoppingCartFragment"
+        android:name="dev.leonardom.androidintroduccion.presentation.shopping_cart.ShoppingCartFragment"
+        android:label="Carrito de Compras" />
 
 </navigation>
