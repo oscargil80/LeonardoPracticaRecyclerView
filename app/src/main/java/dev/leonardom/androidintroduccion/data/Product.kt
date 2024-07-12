@@ -1,9 +1,13 @@
 package dev.leonardom.androidintroduccion.data
 
-data class Product(
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+ data class  Product(
     val id: Long,
     val name: String,
     val imageURL: String,
     val price: Float,
     val description: String
-)
+) : Parcelable

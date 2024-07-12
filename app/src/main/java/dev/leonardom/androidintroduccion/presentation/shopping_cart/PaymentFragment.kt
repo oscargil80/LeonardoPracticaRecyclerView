@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import dev.leonardom.androidintroduccion.databinding.FragmentPaymentBinding
 
 class PaymentFragment : Fragment() {
@@ -25,7 +26,8 @@ class PaymentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnFinish.setOnClickListener {
-
+        val action = PaymentFragmentDirections.actionPaymentFragment2ToSuccessPaymentDialog2()
+            findNavController().navigate(action)
         }
     }
 

@@ -9,7 +9,9 @@ import coil.load
 import dev.leonardom.androidintroduccion.data.Product
 import dev.leonardom.androidintroduccion.databinding.LayoutProductItemBinding
 
-class ProductListAdapter : ListAdapter<Product, ProductListAdapter.ProductViewHolder>(
+class ProductListAdapter(
+    private val onClick: (Product)->Unit
+) : ListAdapter<Product, ProductListAdapter.ProductViewHolder>(
     ProductDiffUtil
 ) {
 
@@ -28,7 +30,7 @@ class ProductListAdapter : ListAdapter<Product, ProductListAdapter.ProductViewHo
         holder.bind(product)
     }
 
-    class ProductViewHolder(
+    inner class ProductViewHolder(
         itemBinding: LayoutProductItemBinding
     ): RecyclerView.ViewHolder(itemBinding.root) {
 
@@ -36,7 +38,19 @@ class ProductListAdapter : ListAdapter<Product, ProductListAdapter.ProductViewHo
         private val name = itemBinding.textViewProductName
         private val price = itemBinding.textViewProductPrice
 
+        private var currentProduct:Product? = null
+
+        init {
+            itemView.setOnClickListener {
+                currentProduct?.let {
+                    onClick(it)
+                }
+            }
+        }
+
         fun bind(product: Product) {
+
+            currentProduct = product
 
             name.text = product.name
             price.text = "$${product.price} MXN"

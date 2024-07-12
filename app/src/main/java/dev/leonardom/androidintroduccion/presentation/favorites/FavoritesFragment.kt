@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import dev.leonardom.androidintroduccion.databinding.FragmentFavoritesBinding
 
 class FavoritesFragment : Fragment() {
@@ -25,7 +26,8 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnPurchase.setOnClickListener {
-
+            val action = FavoritesFragmentDirections.actionFavoritesFragmentToShoppingCartFragment()
+            findNavController().navigate(action)
         }
 
     }

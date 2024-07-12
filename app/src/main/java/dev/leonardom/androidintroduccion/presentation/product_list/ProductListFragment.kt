@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dev.leonardom.androidintroduccion.databinding.FragmentProductListBinding
 import kotlinx.coroutines.flow.collect
@@ -30,7 +31,12 @@ class ProductListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val rvAdapter = ProductListAdapter()
+        val rvAdapter = ProductListAdapter(
+            onClick = { selectProduct ->
+                val action =  ProductListFragmentDirections.actionProductListFragmentToProductDetailFragment2(selectProduct)
+                findNavController().navigate(action)
+            }
+        )
 
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
