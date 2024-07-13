@@ -8,34 +8,42 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
-        android:layout_width="match_parent"
+          android:layout_width="0dp"
         android:layout_height="wrap_content"
+        style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/navView"
+
+        />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/navHostFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@id/navigationRailView"
+        app:layout_constraintStart_toEndOf="@id/navView"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:navGraph="@navigation/nav_graph" />
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"/>
 
-    <com.google.android.material.navigationrail.NavigationRailView
-        android:id="@+id/navigationRailView"
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navView"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/main_menu"
+        app:elevation="0dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:menu="@menu/main_menu" />
+
+        />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

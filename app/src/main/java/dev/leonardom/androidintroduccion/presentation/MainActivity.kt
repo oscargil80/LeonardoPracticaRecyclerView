@@ -1,13 +1,12 @@
 package dev.leonardom.androidintroduccion.presentation
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.*
 import dev.leonardom.androidintroduccion.R
 import dev.leonardom.androidintroduccion.databinding.ActivityMainBinding
 
@@ -15,8 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private lateinit var navController:NavController
-
+    private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,24 +22,29 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         navController = navHostFragment.findNavController()
 
-        appBarConfiguration = AppBarConfiguration(navController.graph)
+        appBarConfiguration = AppBarConfiguration(
+            topLevelDestinationIds = setOf(
+                R.id.productListFragment,
+                R.id.favoritesFragment,
+                R.id.shoppingCartFragment,
+            ),
+            drawerLayout = binding.drawerLayout
+        )
 
-        //BottonNavigationView
+        // BottomNavigationView
         binding.bottomNavigationView?.setupWithNavController(navController)
 
-        //Tollbar
+        // Toolbar
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        //NavigationRail
+        // NavigationRailView
         binding.navigationRailView?.setOnItemSelectedListener { menuItem ->
-            when (menuItem.itemId)
-            {
-                R.id.productDetailFragment2 -> {
+            when(menuItem.itemId) {
+                R.id.productListFragment -> {
                     navController.navigate(R.id.productListFragment)
                     true
                 }
@@ -50,20 +53,22 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
                 R.id.shoppingCartFragment -> {
-                    navController.navigate((R.id.shoppingCartFragment))
+                    navController.navigate(R.id.shoppingCartFragment)
                     true
                 }
-                else ->false
+                else -> false
             }
-
-
         }
 
+        // DrawerLayout
+        binding.navView?.setupWithNavController(navController)
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
 
-
-
-
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
 }
