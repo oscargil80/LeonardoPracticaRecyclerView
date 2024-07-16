@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import dev.leonardom.androidintroduccion.R
 import dev.leonardom.androidintroduccion.databinding.ActivityMainBinding
-
+// Incial septup
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
