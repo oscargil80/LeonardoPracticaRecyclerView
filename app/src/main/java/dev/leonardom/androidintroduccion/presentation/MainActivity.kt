@@ -10,6 +10,7 @@ import dev.leonardom.androidintroduccion.R
 import dev.leonardom.androidintroduccion.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    //barra de navegacion
 
     private lateinit var binding: ActivityMainBinding
 
