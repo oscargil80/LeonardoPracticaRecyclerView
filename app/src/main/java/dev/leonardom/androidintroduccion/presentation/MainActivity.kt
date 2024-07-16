@@ -11,7 +11,7 @@ import dev.leonardom.androidintroduccion.R
 import dev.leonardom.androidintroduccion.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
+// navegacion responsive
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var navController: NavController
